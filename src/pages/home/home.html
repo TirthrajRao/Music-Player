@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Music Player
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let track of playList" (click)="start(track)" style="cursor: pointer;">
+            <ion-label [color]="track == activeTrack ? 'secondary' :'dark'">
+                {{track.name}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="activeTrack">
+    <ion-toolbar color="dark">
+        <ion-row>
+            <ion-col size="12" class="coloumn">
+                {{activeTrack.name}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="coloumn">
+                <ion-range #range [(ngModel)]="progress" color="secondary" (touchend)="seek()" (mouseup)="seek()"></ion-range>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="coloumn">
+                <button (click)="prev()" class="buttons">
+          <ion-icon name="skip-backward"></ion-icon>
+        </button>
+                <button (click)="togglePlayer(false)" *ngIf="!isPlaying" class="buttons">
+          <ion-icon name="play"></ion-icon>
+        </button>
+                <button (click)="togglePlayer(true)" *ngIf="isPlaying" class="buttons">
+          <ion-icon name="pause"></ion-icon>
+        </button>
+                <button (click)="next()" class="buttons">
+          <ion-icon name="skip-forward"></ion-icon>
+        </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

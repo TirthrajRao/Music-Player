@@ -1,0 +1,7 @@
+{
+  "name": "musicPlayer",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
